@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 
-export default class Head extends React.Component {
-  constructor(props) {
+export default class Tail extends React.Component {
+  constructor(props: any) {
     super(props);
   }
 

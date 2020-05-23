@@ -3,7 +3,14 @@
  */
 
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Alert} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Alert,
+  Button,
+} from 'react-native';
 import {GameEngine} from 'react-native-game-engine';
 import {AppRegistry} from 'react-native';
 import App from './App';
@@ -12,6 +19,7 @@ import Head from './src/head.tsx';
 import Food from './src/food.tsx';
 import Constants from './src/constants.ts';
 import GameLoop from './src/gameloops.ts';
+import Tail from './src/tail.tsx';
 
 export default class Game extends Component {
   constructor(props) {
@@ -30,8 +38,34 @@ export default class Game extends Component {
     }
   };
 
+  reset = () => {
+    this.engine.swap({
+      head: {
+        position: [0, 0],
+        xspeed: 1,
+        yspeed: 0,
+        nextMove: 10,
+        updateFrequency: 10,
+        size: 20,
+        renderer: <Head />,
+      },
+      food: {
+        position: [
+          this.randomBetween(0, Constants.GRID_SIZE - 1),
+          this.randomBetween(0, Constants.GRID_SIZE - 1),
+        ],
+        size: 20,
+        renderer: <Food />,
+      },
+      tail: {size: 20, elements: [], renderer: <Tail />},
+    });
+    this.setState({
+      running: true,
+    });
+  };
+
   randomBetween = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) * min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
   };
   render() {
     return (
@@ -65,12 +99,14 @@ export default class Game extends Component {
               size: Constants.CELL_SIZE,
               renderer: <Food />,
             },
+            tail: {size: 20, elements: [], renderer: <Tail />},
           }}
           systems={[GameLoop]}
           onEvent={this.onEvent}
           running={this.state.running}
         />
 
+        <Button title="New Game" onPress={this.reset} />
         <View style={styles.controls}>
           <View style={styles.controlRow}>
             <TouchableOpacity
@@ -90,7 +126,7 @@ export default class Game extends Component {
             <View style={[styles.control, {backgroundColor: null}]}></View>
             <TouchableOpacity
               onPress={() => {
-                this.engine.dispatch({type: 'move-rigth'});
+                this.engine.dispatch({type: 'move-right'});
               }}>
               <View style={styles.control}></View>
             </TouchableOpacity>
