@@ -1,32 +1,29 @@
 import Constants from './constants';
 
-const randomBetween = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) * min);
+const randomBetween = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const GameLoop = (
-  entities: any,
-  {touches, dispatch, events}: {any; any; any},
-): any => {
+const GameLoop = (entities: any, {touches, dispatch, events}): any => {
   let head = entities.head;
   let food = entities.food;
   let tail = entities.tail;
   if (events.length) {
     for (let i: number = 0; i < events.length; i++) {
       if (events[i].type === 'move-up' && head.yspeed !== 1) {
-        head.yspeed = -1;
+        head.yspeed = -0.1;
         head.xspeed = 0;
       }
       if (events[i].type === 'move-down' && head.yspeed !== -1) {
-        head.yspeed = 1;
+        head.yspeed = 0.1;
         head.xspeed = 0;
       }
       if (events[i].type === 'move-left' && head.xspeed !== 1) {
-        head.xspeed = -1;
+        head.xspeed = -0.1;
         head.yspeed = 0;
       }
       if (events[i].type === 'move-right' && head.xspeed !== -1) {
-        head.xspeed = 1;
+        head.xspeed = 0.1;
         head.yspeed = 0;
       }
     }
@@ -63,10 +60,10 @@ const GameLoop = (
       }
 
       if (
-        head.position[0] === food.position[0] &&
-        head.position[1] === food.position[1]
+        Math.abs(head.position[0] - food.position[0]) <= 1 &&
+        Math.abs(head.position[1] - food.position[1]) <= 1
       ) {
-        tail.elements = [[food.position[0], food.position[1]]].concat(
+        tail.elements = [[food.position[0] + 1, food.position[1] + 1]].concat(
           tail.elements,
         );
 

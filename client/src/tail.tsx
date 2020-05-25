@@ -19,6 +19,7 @@ class Tail extends Component {
             left: el[0] * this.props.size,
             top: el[1] * this.props.size,
             backgroundColor: 'blue',
+            borderRadius: 10,
           }}
         />
       );
@@ -29,18 +30,12 @@ class Tail extends Component {
         style={{
           width: Constants.GRID_SIZE * this.props.size,
           height: Constants.GRID_SIZE * this.props.size,
+          borderRadius: 8,
         }}>
         {tailList}
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  finger: {
-    backgroundColor: '#888888',
-    position: 'absolute',
-  },
-});
 
 export default Tail;

@@ -1,7 +1,3 @@
-/**
- * @format
- */
-
 import React, {Component} from 'react';
 import {
   View,
@@ -12,17 +8,22 @@ import {
   Button,
 } from 'react-native';
 import {GameEngine} from 'react-native-game-engine';
-import {AppRegistry} from 'react-native';
-import App from './App';
-import {name as appName} from './app.json';
-import Head from './src/head.tsx';
-import Food from './src/food.tsx';
-import Constants from './src/constants.ts';
-import GameLoop from './src/gameloops.ts';
-import Tail from './src/tail.tsx';
 
-export default class Game extends Component {
-  constructor(props) {
+import Head from './head.tsx';
+import Food from './food.tsx';
+import Constants from './constants.ts';
+import GameLoop from './gameloops.ts';
+import Tail from './tail.tsx';
+
+interface Props {
+  children: any;
+}
+interface State {
+  running: Boolean;
+}
+
+export default class Game extends Component<Props, any> {
+  constructor(props: any) {
     super(props);
     this.boardSize = Constants.GRID_SIZE * Constants.CELL_SIZE;
     this.engine = null;
@@ -42,10 +43,10 @@ export default class Game extends Component {
     this.engine.swap({
       head: {
         position: [0, 0],
-        xspeed: 1,
+        xspeed: 0.1,
         yspeed: 0,
         nextMove: 10,
-        updateFrequency: 10,
+        updateFrequency: 2,
         size: 20,
         renderer: <Head />,
       },
@@ -64,13 +65,12 @@ export default class Game extends Component {
     });
   };
 
-  randomBetween = (min, max) => {
+  randomBetween = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   render() {
     return (
       <View style={styles.container}>
-        <Text>fn23nf983wpnf89p3298mf</Text>
         <GameEngine
           ref={(ref) => {
             this.engine = ref;
@@ -84,10 +84,10 @@ export default class Game extends Component {
           entities={{
             head: {
               position: [0, 0],
-              xspeed: 1,
+              xspeed: 0.1,
               yspeed: 0,
               nextMove: 10,
-              updateFrequency: 10,
+              updateFrequency: 1,
               size: 20,
               renderer: <Head />,
             },
@@ -106,43 +106,52 @@ export default class Game extends Component {
           running={this.state.running}
         />
 
-        <Button title="New Game" onPress={this.reset} />
-        <View style={styles.controls}>
-          <View style={styles.controlRow}>
-            <TouchableOpacity
-              onPress={() => {
-                this.engine.dispatch({type: 'move-up'});
-              }}>
-              <View style={styles.control}></View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.controlRow}>
-            <TouchableOpacity
-              onPress={() => {
-                this.engine.dispatch({type: 'move-left'});
-              }}>
-              <View style={styles.control}></View>
-            </TouchableOpacity>
-            <View style={[styles.control, {backgroundColor: null}]}></View>
-            <TouchableOpacity
-              onPress={() => {
-                this.engine.dispatch({type: 'move-right'});
-              }}>
-              <View style={styles.control}></View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.controlRow}>
-            <TouchableOpacity
-              onPress={() => {
-                this.engine.dispatch({type: 'move-down'});
-              }}>
-              <View style={styles.control}></View>
-            </TouchableOpacity>
-          </View>
-        </View>
+        <TouchableOpacity
+          title="New Game"
+          style={styles.newGame}
+          onPress={this.reset}>
+          <Text style={{color: 'white'}}> New Game</Text>
+        </TouchableOpacity>
+        {this.Controls()}
       </View>
     );
   }
+
+  Controls = () => (
+    <View style={styles.controls}>
+      <View style={styles.controlRow}>
+        <TouchableOpacity
+          onPress={() => {
+            this.engine.dispatch({type: 'move-up'});
+          }}>
+          <View style={styles.control}></View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.controlRow}>
+        <TouchableOpacity
+          onPress={() => {
+            this.engine.dispatch({type: 'move-left'});
+          }}>
+          <View style={styles.control}></View>
+        </TouchableOpacity>
+        <View style={[styles.control, {backgroundColor: null}]}></View>
+        <TouchableOpacity
+          onPress={() => {
+            this.engine.dispatch({type: 'move-right'});
+          }}>
+          <View style={styles.control}></View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.controlRow}>
+        <TouchableOpacity
+          onPress={() => {
+            this.engine.dispatch({type: 'move-down'});
+          }}>
+          <View style={styles.control}></View>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -156,18 +165,28 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     flexDirection: 'column',
+    paddingTop: 40,
   },
   controlRow: {
-    height: 100,
-    width: 300,
+    left: 20,
+    top: 20,
+    height: 80,
+    width: 260,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
   control: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     backgroundColor: 'blue',
+    borderRadius: 20,
+  },
+  newGame: {
+    backgroundColor: 'grey',
+    top: 30,
+    borderRadius: 7,
+    height: 50,
+    width: 90,
   },
 });
-AppRegistry.registerComponent(appName, () => Game);

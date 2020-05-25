@@ -1,8 +1,8 @@
 import React from 'react';
 import {View} from 'react-native';
 
-export default class Head extends React.Component {
-  constructor(props) {
+export default class Tail extends React.Component {
+  constructor(props: any) {
     super(props);
   }
 
@@ -15,10 +15,11 @@ export default class Head extends React.Component {
         style={{
           width: this.props.size,
           height: this.props.size,
-          backgroundColor: 'red',
+          backgroundColor: 'green',
           position: 'absolute',
           left: x * this.props.size,
           top: y * this.props.size,
+          borderRadius: 10,
         }}
       />
     );
