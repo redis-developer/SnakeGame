@@ -8,7 +8,7 @@ const {
   validateUsername,
 } = require("./middleware");
 
-router.get("/update", validateUsername, getCount);
+router.get("/count", validateUsername, getCount);
 
 router.post("/validate", validations, validate);
 

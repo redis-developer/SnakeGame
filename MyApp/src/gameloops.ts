@@ -1,4 +1,5 @@
 import Constants from './constants';
+import {closureFunction} from './GameEngine.ts';
 
 const randomBetween = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -63,6 +64,7 @@ const GameLoop = (entities: any, {touches, dispatch, events}): any => {
         Math.abs(head.position[0] - food.position[0]) <= 1 &&
         Math.abs(head.position[1] - food.position[1]) <= 1
       ) {
+        closureFunction(false);
         tail.elements = [[food.position[0] + 1, food.position[1] + 1]].concat(
           tail.elements,
         );

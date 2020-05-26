@@ -1,7 +1,6 @@
 const { check, validationResult } = require("express-validator");
 const redis = require("redis");
 const chalk = require("chalk");
-
 const client = redis.createClient();
 
 client.on("connect", () => {

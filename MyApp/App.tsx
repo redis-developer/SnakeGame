@@ -15,16 +15,24 @@ class App extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
+      count: 0,
+      username: '',
     };
   }
   render() {
     return (
       <>
         {this.state.loggedIn ? (
-          <Game />
+          <Game
+            count={this.state.count}
+            usernmae={this.state.username}
+            updateCount={(count: number) => this.setState({count})}
+          />
         ) : (
           <Login
-            update={() => this.setState({loggedIn: !this.state.loggedIn})}
+            update={(count: number, username: string) =>
+              this.setState({loggedIn: !this.state.loggedIn, count, username})
+            }
           />
         )}
       </>

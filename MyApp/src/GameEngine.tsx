@@ -8,12 +8,26 @@ import {
   Button,
 } from 'react-native';
 import {GameEngine} from 'react-native-game-engine';
-
+import axios from 'axios';
 import Head from './head.tsx';
 import Food from './food.tsx';
 import Constants from './constants.ts';
 import GameLoop from './gameloops.ts';
 import Tail from './tail.tsx';
+
+const closure = () => {
+  let counter: number;
+  counter = 0;
+  return (bool: Boolean): number | void => {
+    if (bool) {
+      return counter;
+    }
+    counter++;
+  };
+};
+
+const closureFunction: Function = closure();
+export {closureFunction};
 
 interface Props {
   children: any;
@@ -32,10 +46,25 @@ export default class Game extends Component<Props, any> {
     };
   }
 
-  onEvent = (e) => {
+  onEvent = async (e) => {
     if (e.type === 'game-over') {
       Alert.alert('Game-over');
       this.setState({running: false});
+      console.log(closureFunction(true));
+      if (this.state.count > this.props.count) {
+        const data = {username: this.props.username, count: this.state.count};
+        try {
+          const response = await axios.post(
+            'http://10.0.3.2:3000/v1/validate',
+            data,
+          );
+          if (response.status === 200) {
+            this.props.updateCount(this.state.count);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
   };
 
@@ -112,6 +141,9 @@ export default class Game extends Component<Props, any> {
           onPress={this.reset}>
           <Text style={{color: 'white'}}> New Game</Text>
         </TouchableOpacity>
+
+        <Text style={{color: 'white'}}>Max Score : {this.props.count}</Text>
+
         {this.Controls()}
       </View>
     );
