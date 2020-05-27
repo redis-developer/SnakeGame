@@ -1,12 +1,4 @@
 import React, {Component} from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Button,
-} from 'react-native';
 import Game from './src/GameEngine.tsx';
 import Login from './src/login.tsx';
 

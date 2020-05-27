@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "jetifier": "^1.6.5",
     "native-base": "^2.13.12",
     "react": "16.11.0",
     "react-native": "0.62.2",
