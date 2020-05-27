@@ -8,7 +8,7 @@ let Constants: {
 } = {
   MAX_WIDTH: Dimensions.get('screen').width,
   MAX_HEIGTH: Dimensions.get('screen').height,
-  GRID_SIZE: 35,
+  GRID_SIZE: 15,
   CELL_SIZE: 20,
 };
 

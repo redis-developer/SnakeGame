@@ -36,9 +36,9 @@ const GameLoop = (entities: any, {touches, dispatch, events}): any => {
 
     if (
       head.position[0] + head.xspeed < 0 ||
-      head.position[0] + head.xspeed >= Constants.GRID_SIZE ||
+      head.position[0] + head.xspeed + 1 >= Constants.GRID_SIZE ||
       head.position[1] + head.yspeed < 0 ||
-      head.position[1] + head.yspeed >= Constants.GRID_SIZE
+      head.position[1] + head.yspeed + 1 >= Constants.GRID_SIZE
     ) {
       dispatch({
         type: 'game-over',

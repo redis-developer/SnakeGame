@@ -5,7 +5,11 @@ import {
   Text,
   TouchableOpacity,
   Alert,
+  Dimensions,
   Button,
+  Modal,
+  TouchableHighlight,
+  ImageBackground,
 } from 'react-native';
 import {GameEngine} from 'react-native-game-engine';
 import axios from 'axios';
@@ -14,7 +18,7 @@ import Food from './food.tsx';
 import Constants from './constants.ts';
 import GameLoop from './gameloops.ts';
 import Tail from './tail.tsx';
-
+const image = {uri: 'https://reactjs.org/logo-og.png'};
 const closure = () => {
   let counter: number;
   counter = 0;
@@ -43,13 +47,17 @@ export default class Game extends Component<Props, any> {
     this.engine = null;
     this.state = {
       running: true,
+      modal: false,
     };
   }
 
+  onLogout = () => {
+    this.props.loggedIn();
+  };
+
   onEvent = async (e) => {
     if (e.type === 'game-over') {
-      Alert.alert('Game-over');
-      this.setState({running: false});
+      this.setState({running: false, modal: true});
       console.log(closureFunction(true));
       const count: number = closureFunction(true);
       if (count > this.props.count) {
@@ -57,7 +65,7 @@ export default class Game extends Component<Props, any> {
         console.log(data);
         try {
           const response = await axios.put(
-            'http://rachit2501.live/v1/update',
+            'http://35.200.186.104/v1/update',
             data,
           );
           if (response.status === 200) {
@@ -77,7 +85,7 @@ export default class Game extends Component<Props, any> {
         xspeed: 0.1,
         yspeed: 0,
         nextMove: 10,
-        updateFrequency: 2,
+        updateFrequency: 1,
         size: 20,
         renderer: <Head />,
       },
@@ -86,7 +94,7 @@ export default class Game extends Component<Props, any> {
           this.randomBetween(0, Constants.GRID_SIZE - 1),
           this.randomBetween(0, Constants.GRID_SIZE - 1),
         ],
-        size: 20,
+        size: Constants.CELL_SIZE,
         renderer: <Food />,
       },
       tail: {size: 20, elements: [], renderer: <Tail />},
@@ -101,55 +109,79 @@ export default class Game extends Component<Props, any> {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <GameEngine
-          ref={(ref) => {
-            this.engine = ref;
-          }}
-          style={{
-            width: this.boardSize,
-            height: this.boardSize,
-            backgroundColor: '#ffffff',
-            flex: null,
-          }}
-          entities={{
-            head: {
-              position: [0, 0],
-              xspeed: 0.1,
-              yspeed: 0,
-              nextMove: 10,
-              updateFrequency: 1,
-              size: 20,
-              renderer: <Head />,
-            },
-            food: {
-              position: [
-                this.randomBetween(0, Constants.GRID_SIZE - 1),
-                this.randomBetween(0, Constants.GRID_SIZE - 1),
-              ],
-              size: Constants.CELL_SIZE,
-              renderer: <Food />,
-            },
-            tail: {size: 20, elements: [], renderer: <Tail />},
-          }}
-          systems={[GameLoop]}
-          onEvent={this.onEvent}
-          running={this.state.running}
-        />
+      <>
+        {this.Modal()}
 
-        <TouchableOpacity
-          title="New Game"
-          style={styles.newGame}
-          onPress={this.reset}>
-          <Text style={{color: 'white'}}> New Game</Text>
-        </TouchableOpacity>
+        <View style={styles.container}>
+          <GameEngine
+            ref={(ref) => {
+              this.engine = ref;
+            }}
+            style={{
+              width: this.boardSize,
+              height: this.boardSize,
+              backgroundColor: '#ffffff',
+              flex: null,
+            }}
+            entities={{
+              head: {
+                position: [0, 0],
+                xspeed: 0.1,
+                yspeed: 0,
+                nextMove: 10,
+                updateFrequency: 1,
+                size: 20,
+                renderer: <Head />,
+              },
+              food: {
+                position: [
+                  this.randomBetween(0, Constants.GRID_SIZE - 1),
+                  this.randomBetween(0, Constants.GRID_SIZE - 1),
+                ],
+                size: Constants.CELL_SIZE,
+                renderer: <Food />,
+              },
+              tail: {size: 20, elements: [], renderer: <Tail />},
+            }}
+            systems={[GameLoop]}
+            onEvent={this.onEvent}
+            running={this.state.running}
+          />
+          <TouchableOpacity
+            title="New Game"
+            style={styles.newGame}
+            onPress={this.reset}>
+            <Text style={{color: 'black'}}> New Game</Text>
+          </TouchableOpacity>
 
-        <Text style={{color: 'white'}}>Max Score : {this.props.count}</Text>
-
-        {this.Controls()}
-      </View>
+          <Text style={styles.maxscore}>Max Score : {this.props.count}</Text>
+          {this.Controls()}
+          <View style={styles.buttonExit}>
+            <Button color="#d42323" title="Exit Game" onPress={this.onLogout} />
+          </View>
+        </View>
+      </>
     );
   }
+
+  Modal = () => (
+    <Modal animationType="slide" transparent={true} visible={this.state.modal}>
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>Game Over</Text>
+
+          <TouchableHighlight
+            style={{...styles.openButton, backgroundColor: '#2196F3'}}
+            onPress={() => {
+              this.reset();
+              this.setState({modal: false, running: true});
+            }}>
+            <Text style={styles.textStyle}>Try Again</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    </Modal>
+  );
 
   Controls = () => (
     <View style={styles.controls}>
@@ -213,14 +245,61 @@ const styles = StyleSheet.create({
   control: {
     width: 80,
     height: 80,
-    backgroundColor: 'blue',
+    backgroundColor: '#45b3e0',
     borderRadius: 20,
   },
   newGame: {
-    backgroundColor: 'grey',
+    backgroundColor: '#FF9999',
     top: 30,
-    borderRadius: 7,
-    height: 50,
     width: 90,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    margin: 30,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: '#DCDCDC',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  openButton: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  maxscore: {
+    margin: 20,
+    color: 'white',
+  },
+  buttonExit: {
+    position: 'absolute',
+    top: Dimensions.get('window').height / 10,
   },
 });

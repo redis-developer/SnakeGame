@@ -18,7 +18,7 @@ class Tail extends Component {
             position: 'absolute',
             left: el[0] * this.props.size,
             top: el[1] * this.props.size,
-            backgroundColor: 'blue',
+            backgroundColor: '#660000',
             borderRadius: 10,
           }}
         />

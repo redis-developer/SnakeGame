@@ -15,7 +15,7 @@ export default class Head extends React.Component {
         style={{
           width: this.props.size,
           height: this.props.size,
-          backgroundColor: 'red',
+          backgroundColor: '#660000',
           position: 'absolute',
           left: x * this.props.size,
           top: y * this.props.size,
