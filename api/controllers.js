@@ -52,9 +52,10 @@ const validate = (req, res) => {
     if (err) {
       console.log(chalk.red(err));
     }
-    if (result.password === req.body.password)
-      res.status(200).send({ response: result });
-    else res.status(403).send({ response: "authError" });
+    if (result.password === req.body.password) {
+      const data = { count: result.count, username };
+      res.status(200).send({ response: data });
+    } else res.status(403).send({ response: "authError" });
   });
 };
 

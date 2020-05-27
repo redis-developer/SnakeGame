@@ -25,7 +25,7 @@ class App extends React.Component {
         {this.state.loggedIn ? (
           <Game
             count={this.state.count}
-            usernmae={this.state.username}
+            username={this.state.username}
             updateCount={(count: number) => this.setState({count})}
           />
         ) : (

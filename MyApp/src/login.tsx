@@ -22,13 +22,13 @@ const Login: React.SFC<Props> = (props: Props) => {
 
   const update = async () => {
     const data = {username, password};
-    console.log(data);
     try {
       const response = await axios.post(
-        'http://10.0.3.2:3000/v1/validate',
+        'http://rachit2501.live/v1/validate',
         data,
       );
       if (response.status === 200) {
+        console.log(response.data.response);
         props.update(
           response.data.response.count,
           response.data.response.username,
@@ -43,12 +43,12 @@ const Login: React.SFC<Props> = (props: Props) => {
     const data = {username, password};
     console.log(data);
     try {
-      const response = await axios.post('http://10.0.3.2:3000/v1/create', data);
+      const response = await axios.post(
+        'http://rachit2501.live/v1/create',
+        data,
+      );
       if (response.status === 200) {
-        props.update(
-          response.data.response.count,
-          response.data.response.username,
-        );
+        props.update(0, username);
       }
     } catch (e) {
       console.log(e);

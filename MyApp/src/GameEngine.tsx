@@ -51,15 +51,17 @@ export default class Game extends Component<Props, any> {
       Alert.alert('Game-over');
       this.setState({running: false});
       console.log(closureFunction(true));
-      if (this.state.count > this.props.count) {
-        const data = {username: this.props.username, count: this.state.count};
+      const count: number = closureFunction(true);
+      if (count > this.props.count) {
+        const data = {username: this.props.username, count: count};
+        console.log(data);
         try {
-          const response = await axios.post(
-            'http://10.0.3.2:3000/v1/validate',
+          const response = await axios.put(
+            'http://rachit2501.live/v1/update',
             data,
           );
           if (response.status === 200) {
-            this.props.updateCount(this.state.count);
+            this.props.updateCount(count);
           }
         } catch (e) {
           console.log(e);

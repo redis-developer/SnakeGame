@@ -1,5 +1,5 @@
 import Constants from './constants';
-import {closureFunction} from './GameEngine.ts';
+import {closureFunction} from './GameEngine.tsx';
 
 const randomBetween = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
