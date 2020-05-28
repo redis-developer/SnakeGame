@@ -1,8 +1,25 @@
-## Snake Game
+# Snake Game
 
 ### Inspiration
 
 Redis was a database, I have heard several times about from various resources. This hackathon conducted by the team allowed me to study this awesome technology and apply it in a real-world scenario.
+
+## Installation
+For Backend:
+```
+1. Start redis server
+2. cd api
+3. npm i
+4. node index.js
+```
+For front end:
+> Replace api call link to ```localhost:3050``` if you want to run the application locally 
+```
+1. cd SnakeApp
+2. npm i
+3. npm start
+4. npm run android || npm run ios
+```
 
 ### What it does
 
