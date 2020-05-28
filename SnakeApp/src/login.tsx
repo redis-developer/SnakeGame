@@ -32,6 +32,7 @@ const Login: React.SFC<Props> = (props: Props) => {
         data,
       );
       if (response.status === 200) {
+        console.log('f23f3f23f23');
         console.log(response.data.response);
         props.update(
           response.data.response.count,
@@ -54,7 +55,8 @@ const Login: React.SFC<Props> = (props: Props) => {
         data,
       );
       if (response.status === 200) {
-        props.update(0, username);
+        console.log('f2f23f23f4gfdgdsfsdg');
+        props.update(0, username2);
       }
       changeError(true);
     } catch (e) {

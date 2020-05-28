@@ -18,7 +18,7 @@ import Food from './food.tsx';
 import Constants from './constants.ts';
 import GameLoop from './gameloops.ts';
 import Tail from './tail.tsx';
-const image = {uri: 'https://reactjs.org/logo-og.png'};
+
 const closure = () => {
   let counter: number;
   counter = 0;
@@ -30,7 +30,7 @@ const closure = () => {
   };
 };
 
-const closureFunction: Function = closure();
+let closureFunction: Function = closure();
 export {closureFunction};
 
 interface Props {
@@ -69,6 +69,7 @@ export default class Game extends Component<Props, any> {
             data,
           );
           if (response.status === 200) {
+            closureFunction = closure();
             this.props.updateCount(count);
           }
         } catch (e) {
