@@ -48,8 +48,8 @@ Add and migrate the working of the Redis database by redesigning the currently e
 
 ### Screenshots
 
-![](https://i.imgur.com/SwX1vq6.jpg)
+<img src="https://i.imgur.com/SwX1vq6.jpg" style="width:480;height:680;" />
 
-![](https://i.imgur.com/0kWe5kg.jpg)
+<img src="https://i.imgur.com/0kWe5kg.jpg" style="width:480;height:680;" />
 
-![](https://i.imgur.com/tFiVjDP.jpg)
+<img src="https://i.imgur.com/tFiVjDP.jpg" style="width:480;height:680;" />
