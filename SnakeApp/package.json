@@ -11,7 +11,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "jetifier": "^1.6.5",
     "native-base": "^2.13.12",
     "react": "16.11.0",
