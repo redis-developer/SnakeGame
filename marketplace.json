@@ -4,7 +4,7 @@
     "type": "Full App", 
     "contributed_by": "Community",
     "repo_url": "https://github.com/redis-developer/SnakeGame", 
-    "preview_image_url": "https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakegame.png",
+    "preview_image_url": "https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakeapp.png",
     "download_url": "https://github.com/redis-developer/SnakeGame/archive/refs/heads/master.zip",
     "quick_deploy": "false", 
     "deploy_buttons": [],
