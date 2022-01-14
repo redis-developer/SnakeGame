@@ -26,7 +26,7 @@ The advantage of using a database like Redis over other databases like Mongo, SQ
 4. node index.js
 ```
 
-For front end:
+### For front end:
 > Replace api call link to ```localhost:3050``` if you want to run the application locally 
 
 ```
@@ -35,6 +35,11 @@ For front end:
 3. npm start
 4. npm run android || npm run ios
 ```
+
+### How it works?
+
+Frontend UI is designed using React-Native. The backend is designed using Redis + Node and deployed over Google Cloud. For the game design, "react-native-game-engine" is leveraged and utilized its event "dispatched event" concept to design and event-driven app using Redis.
+
 
 
 
