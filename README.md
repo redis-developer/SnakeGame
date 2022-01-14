@@ -45,9 +45,8 @@ Frontend UI is designed using React-Native. The backend is designed using Redis 
 
 ### Future Plans
 
-- Including two player gaming.
-- Adding more of these events driven processes by adding more features to the game, like tools, skills etc.
-- Adding and migrate the working of the Redis database by redesigning the currently existing structure with RedisJSON module.
+- Add more of these events driven processes by adding more features to the game, like tools, skills etc.
+- Add and migrate the working of the Redis database by redesigning the currently existing structure with RedisJSON module.
 
 ### Try it out
 
