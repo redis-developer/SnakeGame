@@ -1,0 +1,20 @@
+{
+    "app_name": "Snake Game",
+    "description": "Building a classic Snake Game for Android using React-Native, NodeJS and Redis", 
+    "type": "Full App", 
+    "contributed_by": "Community",
+    "repo_url": "https://github.com/developer/SnakeGame", 
+    "preview_image_url": "https://raw.githubusercontent.com/redis-developer/SnakeGame/master/app_preview_image.png",
+    "download_url": "https://github.com/redis-developer/SnakeGame/archive/refs/heads/master.zip",
+    "quick_deploy": "false", 
+    "deploy_buttons": [],
+    "language": ["React", "NodeJS"], 
+    "redis_commands": [], 
+    "redis_features": ["Caching"],
+    "redis_modules": ["RedisJSON"], 
+    "app_image_urls": [], 
+    "youtube_url": "https://www.youtube.com/watch?v=yQ37xUP_J-k", 
+    "special_tags": ["Hackathon"], 
+    "verticals": ["Gaming"], 
+    "markdown": "https://raw.githubusercontent.com/redis-developer/SnakeGame/master/README.md"
+}
