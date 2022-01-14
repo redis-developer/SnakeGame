@@ -12,7 +12,7 @@
     "redis_commands": [], 
     "redis_features": ["Caching"],
     "redis_modules": ["RedisJSON"], 
-    "app_image_urls": ["https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakeapp.png"], 
+    "app_image_urls": "https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakeapp.png", 
     "youtube_url": "https://www.youtube.com/watch?v=yQ37xUP_J-k", 
     "special_tags": ["Hackathon"], 
     "verticals": ["Gaming"], 
