@@ -55,8 +55,6 @@ Frontend UI is designed using React-Native. The backend is designed using Redis 
 
 ### Screenshots
 
-<img src="https://i.imgur.com/SwX1vq6.jpg" width="480" height="680" />
-
-<img src="https://i.imgur.com/0kWe5kg.jpg" width="480" height="680" />
-
-<img src="https://i.imgur.com/tFiVjDP.jpg" width="480" height="680" />
+![SnakeGame1](https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakegame1.jpeg)
+![SnakeGame2](https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakegame2.jpeg)
+![SnakeGame3](https://raw.githubusercontent.com/redis-developer/SnakeGame/master/snakegame3.jpeg)
