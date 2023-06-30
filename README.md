@@ -27,7 +27,7 @@ The advantage of using a database like Redis over other databases like Mongo, SQ
 ```
 
 ### For front end:
-> Replace api call link to ```localhost:3050``` if you want to run the application locally 
+> Replace api call link to ```localhost:3050``` if you want to run the application locally
 
 ```
 1. cd SnakeApp
@@ -46,7 +46,7 @@ Frontend UI is designed using React-Native. The backend is designed using Redis 
 ### Future Plans
 
 - Add more of these events driven processes by adding more features to the game, like tools, skills etc.
-- Add and migrate the working of the Redis database by redesigning the currently existing structure with RedisJSON module.
+- Add and migrate the working of the Redis database by redesigning the currently existing structure with Redis JSON.
 
 ### Try it out
 
